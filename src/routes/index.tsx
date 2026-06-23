@@ -4,8 +4,12 @@ import {
   ArrowUpRight, Play, Sparkles, Instagram, Mail, Phone,
   ArrowRight, Check, Star, ChevronRight, Globe, MessageCircle,
   Film, Camera, Megaphone, Search, ShoppingBag, PenTool,
-  BarChart3, Layers, Zap, Quote
+  BarChart3, Layers, Zap, Quote, Calendar, Send
 } from "lucide-react";
+import owlLogo from "@/assets/owlnest-logo.png.asset.json";
+
+const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
+const CONTACT_EMAIL = "info@owlnestmedia.com";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,7 +78,7 @@ function Nav() {
             <a href="#process" className="hover:text-ink transition-colors">Process</a>
             <a href="#about" className="hover:text-ink transition-colors">About</a>
           </nav>
-          <a href="#contact" className="btn-ink hover:btn-ink-hover !py-2 !px-4 !text-sm">
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-ink hover:btn-ink-hover !py-2 !px-4 !text-sm">
             Book a Call <ArrowUpRight className="size-4" />
           </a>
         </div>
@@ -83,16 +87,10 @@ function Nav() {
   );
 }
 
-function OwlMark() {
+function OwlMark({ size = "size-9" }: { size?: string }) {
   return (
-    <span className="relative grid place-items-center size-9 rounded-2xl bg-ink text-white overflow-hidden">
-      <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 3c4 0 7 3 7 7v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-5c0-4 3-7 7-7Z" />
-        <circle cx="9" cy="11" r="1.7" fill="#FF7A00" stroke="none" />
-        <circle cx="15" cy="11" r="1.7" fill="#FF7A00" stroke="none" />
-        <path d="M11 14.5l1 1 1-1" />
-      </svg>
-      <span className="absolute -bottom-1 -right-1 size-2.5 rounded-full bg-ember" />
+    <span className={`relative grid place-items-center ${size} rounded-2xl bg-ink overflow-hidden ring-1 ring-ink/10`}>
+      <img src={owlLogo.url} alt="Owlnest Media logo" className="h-full w-full object-cover" />
     </span>
   );
 }
