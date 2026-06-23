@@ -4,8 +4,12 @@ import {
   ArrowUpRight, Play, Sparkles, Instagram, Mail, Phone,
   ArrowRight, Check, Star, ChevronRight, Globe, MessageCircle,
   Film, Camera, Megaphone, Search, ShoppingBag, PenTool,
-  BarChart3, Layers, Zap, Quote
+  BarChart3, Layers, Zap, Quote, Calendar, Send
 } from "lucide-react";
+import owlLogo from "@/assets/owlnest-logo.png.asset.json";
+
+const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
+const CONTACT_EMAIL = "info@owlnestmedia.com";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -74,7 +78,7 @@ function Nav() {
             <a href="#process" className="hover:text-ink transition-colors">Process</a>
             <a href="#about" className="hover:text-ink transition-colors">About</a>
           </nav>
-          <a href="#contact" className="btn-ink hover:btn-ink-hover !py-2 !px-4 !text-sm">
+          <a href={CALENDLY_URL} target="_blank" rel="noopener noreferrer" className="btn-ink hover:btn-ink-hover !py-2 !px-4 !text-sm">
             Book a Call <ArrowUpRight className="size-4" />
           </a>
         </div>
@@ -83,16 +87,10 @@ function Nav() {
   );
 }
 
-function OwlMark() {
+function OwlMark({ size = "size-9" }: { size?: string }) {
   return (
-    <span className="relative grid place-items-center size-9 rounded-2xl bg-ink text-white overflow-hidden">
-      <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 3c4 0 7 3 7 7v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-5c0-4 3-7 7-7Z" />
-        <circle cx="9" cy="11" r="1.7" fill="#FF7A00" stroke="none" />
-        <circle cx="15" cy="11" r="1.7" fill="#FF7A00" stroke="none" />
-        <path d="M11 14.5l1 1 1-1" />
-      </svg>
-      <span className="absolute -bottom-1 -right-1 size-2.5 rounded-full bg-ember" />
+    <span className={`relative grid place-items-center ${size} rounded-2xl bg-ink overflow-hidden ring-1 ring-ink/10`}>
+      <img src={owlLogo.url} alt="Owlnest Media logo" className="h-full w-full object-cover" />
     </span>
   );
 }
@@ -799,46 +797,151 @@ function Testimonials() {
   );
 }
 
-/* ---------- CTA ---------- */
+/* ---------- CTA + CONTACT FORM ---------- */
 function CTA() {
+  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
+  const [sent, setSent] = useState(false);
+
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`New project inquiry — ${form.name || "Owlnest website"}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\n\nMessage:\n${form.message}`
+    );
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+    setSent(true);
+  };
+
   return (
     <section id="contact" className="py-24 sm:py-32">
       <div className="container-x">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[36px] bg-ink text-white p-10 sm:p-16 lg:p-20">
-            {/* glow */}
+          <div className="relative overflow-hidden rounded-[36px] bg-ink text-white p-8 sm:p-12 lg:p-16">
             <div className="absolute -top-32 -right-32 size-[480px] rounded-full opacity-50 blur-3xl"
               style={{ background: "radial-gradient(circle, #FF7A00, transparent 60%)" }} />
             <div className="absolute -bottom-32 -left-32 size-[420px] rounded-full opacity-40 blur-3xl"
               style={{ background: "radial-gradient(circle, #FF9A3D, transparent 60%)" }} />
 
-            <div className="relative max-w-3xl">
-              <span className="chip !bg-white/10 !text-white !border-white/20">
-                <Zap className="size-3.5" /> Let's build
-              </span>
-              <h2 className="mt-6 font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] text-balance">
-                Ready to build something<br/><span className="italic font-serif text-ember">extraordinary?</span>
-              </h2>
-              <p className="mt-6 text-lg text-white/70 max-w-xl">
-                Let's create content that makes your brand impossible to ignore. Book a free 30-minute consultation and we'll map your first 90 days.
-              </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <a href="mailto:info@owlnestmedia.com" className="btn-ember hover:btn-ember-hover">Start Your Project <ArrowRight className="size-4" /></a>
-                <a href="tel:+918983626846" className="btn-ghost hover:btn-ghost-hover !bg-white/5 !text-white !border-white/20">
-                  <Phone className="size-4" /> +91 89836 26846
+            <div className="relative grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-start">
+              {/* Left: pitch + Calendly */}
+              <div>
+                <span className="chip !bg-white/10 !text-white !border-white/20">
+                  <Zap className="size-3.5" /> Let's build
+                </span>
+                <h2 className="mt-6 font-display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.02] text-balance">
+                  Ready to build something<br/><span className="italic font-serif text-ember">extraordinary?</span>
+                </h2>
+                <p className="mt-6 text-lg text-white/70 max-w-xl">
+                  Tell us about your brand or grab a 30-minute slot on our calendar. We'll map your first 90 days, free.
+                </p>
+
+                <a
+                  href={CALENDLY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group mt-8 inline-flex items-stretch rounded-2xl bg-white/5 border border-white/15 hover:bg-white/10 transition overflow-hidden"
+                >
+                  <span className="grid place-items-center px-5 bg-ember text-white">
+                    <Calendar className="size-5" />
+                  </span>
+                  <span className="px-5 py-4">
+                    <span className="block text-[11px] uppercase tracking-widest text-white/50">Schedule a meeting</span>
+                    <span className="block font-display font-semibold text-base">Pick a 30-min slot on Calendly</span>
+                  </span>
+                  <span className="grid place-items-center pr-5 text-white/70 group-hover:text-white">
+                    <ArrowUpRight className="size-5" />
+                  </span>
                 </a>
+
+                <div className="mt-10 grid sm:grid-cols-1 gap-3 text-sm max-w-md">
+                  <ContactLine icon={Phone} label="Phone" value="+91 89836 26846" href="tel:+918983626846" />
+                  <ContactLine icon={Mail} label="Email" value={CONTACT_EMAIL} href={`mailto:${CONTACT_EMAIL}`} />
+                  <ContactLine icon={Globe} label="Website" value="www.owlnestmedia.com" href="#" />
+                </div>
               </div>
 
-              <div className="mt-12 grid sm:grid-cols-3 gap-4 text-sm">
-                <ContactLine icon={Phone} label="Phone" value="+91 89836 26846" href="tel:+918983626846" />
-                <ContactLine icon={Mail} label="Email" value="info@owlnestmedia.com" href="mailto:info@owlnestmedia.com" />
-                <ContactLine icon={Globe} label="Website" value="www.owlnestmedia.com" href="#" />
-              </div>
+              {/* Right: contact form */}
+              <form
+                onSubmit={onSubmit}
+                className="rounded-3xl bg-white/[0.04] backdrop-blur border border-white/10 p-6 sm:p-8 space-y-4"
+              >
+                <div>
+                  <div className="font-display font-bold text-xl">Start your project</div>
+                  <p className="text-sm text-white/60 mt-1">We reply within one business day.</p>
+                </div>
+
+                <Field label="Your name">
+                  <input
+                    required
+                    maxLength={100}
+                    value={form.name}
+                    onChange={e => setForm({ ...form, name: e.target.value })}
+                    placeholder="Jane Doe"
+                    className="input-dark"
+                  />
+                </Field>
+                <Field label="Email">
+                  <input
+                    required
+                    type="email"
+                    maxLength={255}
+                    value={form.email}
+                    onChange={e => setForm({ ...form, email: e.target.value })}
+                    placeholder="jane@brand.com"
+                    className="input-dark"
+                  />
+                </Field>
+                <Field label="Company (optional)">
+                  <input
+                    maxLength={120}
+                    value={form.company}
+                    onChange={e => setForm({ ...form, company: e.target.value })}
+                    placeholder="Brand or company"
+                    className="input-dark"
+                  />
+                </Field>
+                <Field label="What are you building?">
+                  <textarea
+                    required
+                    maxLength={1500}
+                    rows={4}
+                    value={form.message}
+                    onChange={e => setForm({ ...form, message: e.target.value })}
+                    placeholder="Tell us about your goals, timeline, and budget…"
+                    className="input-dark resize-none"
+                  />
+                </Field>
+
+                <button
+                  type="submit"
+                  className="btn-ember hover:btn-ember-hover w-full justify-center !py-3"
+                >
+                  <Send className="size-4" /> Send message
+                </button>
+
+                {sent && (
+                  <p className="text-xs text-emerald-300">
+                    Opening your email app… if nothing happens, write us directly at {CONTACT_EMAIL}.
+                  </p>
+                )}
+                <p className="text-[11px] text-white/40">
+                  By submitting, you'll send an email to {CONTACT_EMAIL} from your default mail app.
+                </p>
+              </form>
             </div>
           </div>
         </Reveal>
       </div>
     </section>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="block text-[11px] uppercase tracking-widest text-white/50 mb-1.5">{label}</span>
+      {children}
+    </label>
   );
 }
 
