@@ -816,7 +816,7 @@ function CTA() {
     <section id="contact" className="py-24 sm:py-32">
       <div className="container-x">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[36px] bg-ink text-white p-8 sm:p-12 lg:p-16">
+          <div className="relative overflow-hidden rounded-[36px] bg-[#0A0A0F] text-white border border-white/10 p-8 sm:p-12 lg:p-16">
             <div className="absolute -top-32 -right-32 size-[480px] rounded-full opacity-50 blur-3xl"
               style={{ background: "radial-gradient(circle, #2D7BFF, transparent 60%)" }} />
             <div className="absolute -bottom-32 -left-32 size-[420px] rounded-full opacity-40 blur-3xl"
