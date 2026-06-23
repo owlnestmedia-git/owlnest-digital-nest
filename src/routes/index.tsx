@@ -119,7 +119,7 @@ function Hero() {
                 <span className="relative inline-block">
                   <span className="italic font-serif font-normal text-ember">stories</span>
                   <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none">
-                    <path d="M2 8 Q 60 1 100 6 T 198 4" stroke="#FF7A00" strokeWidth="2.5" strokeLinecap="round" />
+                    <path d="M2 8 Q 60 1 100 6 T 198 4" stroke="#2D7BFF" strokeWidth="2.5" strokeLinecap="round" />
                   </svg>
                 </span>{" "}
                 <br className="hidden sm:block" />people remember.
@@ -211,14 +211,14 @@ function HeroMockup() {
         </div>
         <div className="font-display text-2xl font-bold mt-1">12.4M</div>
         <svg viewBox="0 0 120 40" className="mt-2 w-full h-10">
-          <path d="M0,30 C20,28 30,18 50,20 S90,8 120,4" fill="none" stroke="#FF7A00" strokeWidth="2" />
+          <path d="M0,30 C20,28 30,18 50,20 S90,8 120,4" fill="none" stroke="#2D7BFF" strokeWidth="2" />
           <path d="M0,30 C20,28 30,18 50,20 S90,8 120,4 L120,40 L0,40 Z" fill="url(#g)" opacity=".25" />
-          <defs><linearGradient id="g" x2="0" y2="1"><stop stopColor="#FF7A00"/><stop offset="1" stopColor="#FF7A00" stopOpacity="0"/></linearGradient></defs>
+          <defs><linearGradient id="g" x2="0" y2="1"><stop stopColor="#2D7BFF"/><stop offset="1" stopColor="#2D7BFF" stopOpacity="0"/></linearGradient></defs>
         </svg>
       </div>
 
       {/* Reel thumb stack */}
-      <div className="absolute right-0 top-6 w-[150px] h-[200px] rounded-2xl shadow-2xl overflow-hidden float-slow border border-white" style={{ animationDelay: '-4s', ['--r' as any]: '8deg', background: "linear-gradient(160deg,#FF7A00,#7a2e00)" }}>
+      <div className="absolute right-0 top-6 w-[150px] h-[200px] rounded-2xl shadow-2xl overflow-hidden float-slow border border-white" style={{ animationDelay: '-4s', ['--r' as any]: '8deg', background: "linear-gradient(160deg,#2D7BFF,#7a2e00)" }}>
         <div className="absolute inset-0 grid place-items-center">
           <Play className="size-8 fill-white text-white" />
         </div>
@@ -412,7 +412,7 @@ function FeaturedCard() {
         {/* poster */}
         <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[460px] overflow-hidden">
           <div className="absolute inset-0" style={{
-            background: "radial-gradient(120% 80% at 30% 30%, #FF9A3D 0%, #B14400 45%, #1A1A1A 100%)"
+            background: "radial-gradient(120% 80% at 30% 30%, #5AA0FF 0%, #0E2A6B 45%, #1A1A1A 100%)"
           }} />
           <div className="absolute inset-0 mix-blend-overlay opacity-50" style={{
             backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,.1) 0 2px, transparent 2px 18px)"
@@ -460,11 +460,11 @@ function FeaturedCard() {
 }
 
 const reelGradients = [
-  "linear-gradient(160deg,#FF7A00,#3a1300)",
+  "linear-gradient(160deg,#2D7BFF,#3a1300)",
   "linear-gradient(160deg,#1A1A1A,#3b2a1a)",
   "linear-gradient(160deg,#ff9a3d,#7a2e00)",
-  "linear-gradient(160deg,#2b1a10,#FF7A00)",
-  "linear-gradient(160deg,#1a1a1a,#FF7A00)",
+  "linear-gradient(160deg,#2b1a10,#2D7BFF)",
+  "linear-gradient(160deg,#1a1a1a,#2D7BFF)",
   "linear-gradient(160deg,#7a2e00,#1A1A1A)",
 ];
 
@@ -777,7 +777,7 @@ function Testimonials() {
                 <Quote className="size-7 text-ember" />
                 <blockquote className="mt-4 text-[15px] leading-relaxed text-pretty">"{t.q}"</blockquote>
                 <figcaption className="mt-6 flex items-center gap-3">
-                  <div className="size-10 rounded-full bg-gradient-to-br from-ember to-amber-700 grid place-items-center text-white font-semibold">
+                  <div className="size-10 rounded-full bg-gradient-to-br from-ember to-blue-900 grid place-items-center text-white font-semibold">
                     {t.n.split(" ").map(s => s[0]).join("")}
                   </div>
                   <div>
@@ -818,9 +818,9 @@ function CTA() {
         <Reveal>
           <div className="relative overflow-hidden rounded-[36px] bg-ink text-white p-8 sm:p-12 lg:p-16">
             <div className="absolute -top-32 -right-32 size-[480px] rounded-full opacity-50 blur-3xl"
-              style={{ background: "radial-gradient(circle, #FF7A00, transparent 60%)" }} />
+              style={{ background: "radial-gradient(circle, #2D7BFF, transparent 60%)" }} />
             <div className="absolute -bottom-32 -left-32 size-[420px] rounded-full opacity-40 blur-3xl"
-              style={{ background: "radial-gradient(circle, #FF9A3D, transparent 60%)" }} />
+              style={{ background: "radial-gradient(circle, #5AA0FF, transparent 60%)" }} />
 
             <div className="relative grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-start">
               {/* Left: pitch + Calendly */}
