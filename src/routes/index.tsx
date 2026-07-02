@@ -189,7 +189,7 @@ function HeroMockup() {
       {/* Analytics card */}
       <div className="absolute -left-2 sm:left-0 top-10 w-[210px] rounded-2xl bg-white border border-border p-4 shadow-[0_30px_60px_-30px_rgba(0,0,0,.25)] float-slow" style={{ animationDelay: '-2s', ['--r' as any]: '-6deg' }}>
         <div className="flex items-center justify-between">
-          <span className="text-[11px] uppercase tracking-widest text-muted-foreground">Reach</span>
+          <span className="text-[11px] uppercase tracking-widest text-gray-800 font-bold">Reach</span>
           <span className="text-[11px] text-emerald-600 font-medium">+248%</span>
         </div>
         <div className="font-display text-2xl font-bold mt-1">12.4M</div>
@@ -228,7 +228,7 @@ function HeroMockup() {
       {/* Engagement chip */}
       <div className="absolute left-2 bottom-6 rounded-full bg-ink text-white px-4 py-2 flex items-center gap-2 shadow-xl float-slow" style={{ animationDelay: '-3s' }}>
         <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-        <span className="text-xs">CTR 8.4% • ROAS 6.2x</span>
+        <span className="text-xs font-bold">CTR 8.4% • ROAS 6.2x</span>
       </div>
     </div>
   );
