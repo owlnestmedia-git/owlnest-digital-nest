@@ -170,18 +170,17 @@ function HeroMockup() {
       <div className="absolute inset-0 -z-10 rounded-[40px] blur-2xl opacity-70"
         style={{ background: "radial-gradient(60% 60% at 50% 40%, rgba(255,122,0,.25), transparent 70%)" }} />
 
-      {/* Phone reel — Instagram embed */}
+      {/* Phone reel — full-bleed autoplay video */}
       <div className="absolute left-1/2 top-4 -translate-x-1/2 w-[260px] h-[500px] rounded-[40px] bg-ink p-2 shadow-[0_40px_80px_-20px_rgba(0,0,0,.45)] float-slow" style={{ ['--r' as any]: '-2deg' }}>
         <div className="absolute top-2 left-1/2 -translate-x-1/2 h-5 w-24 rounded-b-2xl bg-ink z-10" />
         <div className="h-full w-full rounded-[34px] overflow-hidden relative bg-black">
-          <iframe
-            src="https://www.instagram.com/reel/DUS_RCHjS4k/embed/?autoplay=1&muted=1"
-            title="Owlnest Media reel"
-            className="absolute left-1/2 -translate-x-1/2 border-0"
-            style={{ top: "-54px", width: "244px", height: "640px" }}
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowFullScreen
-            scrolling="no"
+          <video
+            src={heroReel.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
           />
         </div>
       </div>
