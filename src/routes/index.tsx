@@ -10,6 +10,7 @@ import owlLogo from "@/assets/owlnest-logo.png.asset.json";
 import computechLogo from "@/assets/computech-logo.png.asset.json";
 import heroReel from "@/assets/hero-reel.mp4.asset.json";
 import brandFilm from "@/assets/brand-film.mp4.asset.json";
+import ariaFestival from "@/assets/aria-festival-campaign.mov.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
 const CONTACT_EMAIL = "info@owlnestmedia.com";
