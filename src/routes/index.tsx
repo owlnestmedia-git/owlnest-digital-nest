@@ -200,12 +200,17 @@ function HeroMockup() {
         </svg>
       </div>
 
-      {/* Reel thumb stack */}
-      <div className="absolute right-0 top-6 w-[150px] h-[200px] rounded-2xl shadow-2xl overflow-hidden float-slow border border-white" style={{ animationDelay: '-4s', ['--r' as any]: '8deg', background: "linear-gradient(160deg,#2D7BFF,#7a2e00)" }}>
-        <div className="absolute inset-0 grid place-items-center">
-          <Play className="size-8 fill-white text-white" />
-        </div>
-        <div className="absolute bottom-2 left-2 right-2 text-white text-[10px] font-medium">Brand Film · 0:42</div>
+      {/* Brand Film video card */}
+      <div className="absolute right-0 top-6 w-[150px] h-[200px] rounded-2xl shadow-2xl overflow-hidden float-slow border border-white" style={{ animationDelay: '-4s', ['--r' as any]: '8deg' }}>
+        <video
+          src={brandFilm.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute bottom-2 left-2 right-2 text-white text-[10px] font-medium drop-shadow-md">Brand Film</div>
       </div>
 
       {/* Comment bubble */}
