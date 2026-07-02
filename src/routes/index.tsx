@@ -403,17 +403,15 @@ function FeaturedCard() {
       <div className="grid lg:grid-cols-[1.2fr_1fr]">
         {/* poster */}
         <div className="relative aspect-[16/10] lg:aspect-auto lg:min-h-[460px] overflow-hidden">
-          <div className="absolute inset-0" style={{
-            background: "radial-gradient(120% 80% at 30% 30%, #5AA0FF 0%, #0E2A6B 45%, #1A1A1A 100%)"
-          }} />
-          <div className="absolute inset-0 mix-blend-overlay opacity-50" style={{
-            backgroundImage: "repeating-linear-gradient(45deg, rgba(255,255,255,.1) 0 2px, transparent 2px 18px)"
-          }} />
-          <div className="absolute inset-0 grid place-items-center">
-            <button className="group/play size-20 rounded-full bg-white/90 grid place-items-center hover:scale-105 transition shadow-2xl">
-              <Play className="size-7 fill-ink text-ink ml-1" />
-            </button>
-          </div>
+          <video
+            src={ariaFestival.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
           <span className="absolute top-5 left-5 chip !bg-white/85 !text-ink !border-white">{featured.tag}</span>
           <div className="absolute bottom-5 left-5 right-5 text-white">
             <div className="text-xs uppercase tracking-widest opacity-80">{featured.industry}</div>
