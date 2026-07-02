@@ -7,6 +7,7 @@ import {
   BarChart3, Layers, Zap, Quote, Calendar, Send
 } from "lucide-react";
 import owlLogo from "@/assets/owlnest-logo.png.asset.json";
+import computechLogo from "@/assets/computech-logo.png.asset.json";
 import heroReel from "@/assets/hero-reel.mp4.asset.json";
 import brandFilm from "@/assets/brand-film.mp4.asset.json";
 
