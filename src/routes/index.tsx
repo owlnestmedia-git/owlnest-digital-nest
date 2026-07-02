@@ -7,6 +7,7 @@ import {
   BarChart3, Layers, Zap, Quote, Calendar, Send
 } from "lucide-react";
 import owlLogo from "@/assets/owlnest-logo.png.asset.json";
+import computechLogo from "@/assets/computech-logo.png.asset.json";
 import heroReel from "@/assets/hero-reel.mp4.asset.json";
 import brandFilm from "@/assets/brand-film.mp4.asset.json";
 
@@ -214,15 +215,17 @@ function HeroMockup() {
       </div>
 
       {/* Comment bubble */}
-      <div className="absolute right-2 sm:right-6 bottom-16 max-w-[210px] glass rounded-2xl p-3 shadow-xl float-slow" style={{ animationDelay: '-1s', ['--r' as any]: '4deg' }}>
+      <div className="absolute right-2 sm:right-6 bottom-16 max-w-[230px] glass rounded-2xl p-3 shadow-xl float-slow" style={{ animationDelay: '-1s', ['--r' as any]: '4deg' }}>
         <div className="flex items-center gap-2">
-          <div className="size-8 rounded-full bg-gradient-to-br from-ember to-amber-600" />
+          <div className="size-8 rounded-full bg-white overflow-hidden ring-1 ring-border flex-shrink-0">
+            <img src={computechLogo.url} alt="CompuTech Academy" className="w-full h-full object-cover" />
+          </div>
           <div>
-            <div className="text-xs font-semibold">@studio_aria</div>
-            <div className="text-[10px] text-muted-foreground">just now</div>
+            <div className="text-xs font-semibold">CompuTech Academy</div>
+            <div className="text-[10px] text-muted-foreground">Govt. Recognised</div>
           </div>
         </div>
-        <div className="text-[12px] mt-2 leading-snug">"Best edit team we've worked with. Period." 🔥</div>
+        <div className="text-[12px] mt-2 leading-snug">"Owlnest transformed our digital presence. Students & reach both doubled!" 🚀</div>
       </div>
 
       {/* Engagement chip */}
