@@ -228,7 +228,7 @@ function HeroMockup() {
       {/* Engagement chip */}
       <div className="absolute left-2 bottom-6 rounded-full bg-ink text-white px-4 py-2 flex items-center gap-2 shadow-xl float-slow" style={{ animationDelay: '-3s' }}>
         <span className="size-2 rounded-full bg-emerald-400 animate-pulse" />
-        <span className="text-xs">CTR 8.4% • ROAS 6.2x</span>
+        <span className="text-xs font-bold">CTR 8.4% • ROAS 6.2x</span>
       </div>
     </div>
   );
