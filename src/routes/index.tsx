@@ -7,6 +7,7 @@ import {
   BarChart3, Layers, Zap, Quote, Calendar, Send
 } from "lucide-react";
 import owlLogo from "@/assets/owlnest-logo.png.asset.json";
+import heroReel from "@/assets/hero-reel.mp4.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
 const CONTACT_EMAIL = "info@owlnestmedia.com";
