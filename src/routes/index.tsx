@@ -169,37 +169,19 @@ function HeroMockup() {
       <div className="absolute inset-0 -z-10 rounded-[40px] blur-2xl opacity-70"
         style={{ background: "radial-gradient(60% 60% at 50% 40%, rgba(255,122,0,.25), transparent 70%)" }} />
 
-      {/* Phone reel */}
-      <div className="absolute left-1/2 top-4 -translate-x-1/2 w-[230px] h-[470px] rounded-[40px] bg-ink p-2 shadow-[0_40px_80px_-20px_rgba(0,0,0,.45)] float-slow" style={{ ['--r' as any]: '-2deg' }}>
+      {/* Phone reel — Instagram embed */}
+      <div className="absolute left-1/2 top-4 -translate-x-1/2 w-[260px] h-[500px] rounded-[40px] bg-ink p-2 shadow-[0_40px_80px_-20px_rgba(0,0,0,.45)] float-slow" style={{ ['--r' as any]: '-2deg' }}>
         <div className="absolute top-2 left-1/2 -translate-x-1/2 h-5 w-24 rounded-b-2xl bg-ink z-10" />
-        <div className="h-full w-full rounded-[34px] overflow-hidden relative" style={{ background: "linear-gradient(160deg,#2a1a0c,#0d0907)" }}>
-          <div className="absolute inset-0" style={{
-            background: "radial-gradient(120% 60% at 50% 20%, rgba(255,122,0,.55), transparent 60%)",
-          }} />
-          <div className="absolute inset-x-4 top-5 flex items-center justify-between text-white/80 text-[10px]">
-            <span>Reels</span><span>● LIVE</span>
-          </div>
-          <div className="absolute inset-x-5 bottom-20">
-            <div className="text-white text-[15px] font-display font-semibold leading-tight">Brand films that<br/>stop the scroll.</div>
-            <div className="mt-2 flex gap-1.5">
-              <span className="px-2 py-0.5 rounded-full bg-white/10 text-white text-[10px]">@owlnest</span>
-              <span className="px-2 py-0.5 rounded-full bg-ember/90 text-white text-[10px]">#reels</span>
-            </div>
-          </div>
-          <div className="absolute right-3 bottom-20 flex flex-col gap-3 items-center text-white">
-            {["♥", "💬", "↗"].map(i => (
-              <div key={i} className="size-9 rounded-full bg-white/10 grid place-items-center text-sm">{i}</div>
-            ))}
-          </div>
-          <div className="absolute inset-x-4 bottom-4 h-1 rounded-full bg-white/20 overflow-hidden">
-            <div className="h-full w-1/2 bg-ember rounded-full" />
-          </div>
-          {/* play */}
-          <div className="absolute inset-0 grid place-items-center">
-            <div className="size-14 rounded-full bg-white/90 grid place-items-center shadow-2xl">
-              <Play className="size-5 fill-ink text-ink ml-0.5" />
-            </div>
-          </div>
+        <div className="h-full w-full rounded-[34px] overflow-hidden relative bg-black">
+          <iframe
+            src="https://www.instagram.com/reel/DUS_RCHjS4k/embed/?autoplay=1&muted=1"
+            title="Owlnest Media reel"
+            className="absolute left-1/2 -translate-x-1/2 border-0"
+            style={{ top: "-54px", width: "244px", height: "640px" }}
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowFullScreen
+            scrolling="no"
+          />
         </div>
       </div>
 
