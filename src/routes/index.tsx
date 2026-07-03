@@ -985,6 +985,11 @@ function CTA() {
                   <ContactLine icon={Phone} label="Phone" value="+91 89836 26846" href="tel:+918983626846" />
                   <ContactLine icon={Globe} label="Website" value="www.owlnestmedia.com" href="#" />
                 </div>
+
+                <div className="mt-8">
+                  <div className="text-[11px] uppercase tracking-widest text-white/50 mb-3">Follow the nest</div>
+                  <SocialLinks />
+                </div>
               </div>
 
               {/* Right: contact form */}
