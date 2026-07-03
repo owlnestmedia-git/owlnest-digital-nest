@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
+import { submitContactForm } from "@/lib/contact.functions";
 import {
   ArrowUpRight, Play, Sparkles, Instagram, Mail, Phone,
   ArrowRight, Check, Star, ChevronRight, Globe, MessageCircle,
