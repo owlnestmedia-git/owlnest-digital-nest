@@ -702,7 +702,7 @@ function Services() {
 function Why() {
   const points = [
     "End-to-End Marketing Solutions",
-    "Marketplace Experts (Amazon, Flipkart, Meesho, Myntra)",
+    "Marketplace Experts (Amazon, Flipkart, Meesho, Hostinger)",
     "Performance-Driven Approach",
     "Premium Content & Creative Production",
     "Website Design & Development",
