@@ -6,8 +6,116 @@ import {
   ArrowUpRight, Play, Sparkles, Instagram, Mail, Phone,
   ArrowRight, Check, Star, ChevronRight, Globe, MessageCircle,
   Film, Camera, Megaphone, Search, ShoppingBag, PenTool,
-  BarChart3, Layers, Zap, Quote, Calendar, Send
+  BarChart3, Layers, Zap, Quote, Calendar, Send,
+  Facebook, Linkedin, Github, MapPin, ShieldCheck
 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+
+/* ---------- SHARED LINKS ---------- */
+const SOCIALS = [
+  { name: "Instagram", href: "https://www.instagram.com/owlnest.media", Icon: Instagram },
+  { name: "Facebook", href: "https://www.facebook.com/share/1BQ27QSWVq/?mibextid=wwXIfr", Icon: Facebook },
+  { name: "LinkedIn", href: "https://www.linkedin.com/company/owlnest-media-pvt-ltd/", Icon: Linkedin },
+  { name: "GitHub", href: "https://github.com/owlnestmedia", Icon: Github },
+  { name: "WhatsApp", href: "https://wa.me/message/Z74MFBZ4HVQGG1", Icon: MessageCircle },
+];
+const MAPS_URL = "https://maps.app.goo.gl/XrCj1Rvociu7CWkQ7?g_st=iw";
+const UDYAM_URL = "https://udyamregistration.gov.in/verifyudyambarcode.aspx?verifyudrn=5FDilq9U1bBk1OLDxx5Yta0I0ElhGcvZpqSDMlQJ/w8=";
+
+function SocialLinks({ size = "md" }: { size?: "sm" | "md" }) {
+  const dim = size === "sm" ? "size-9" : "size-11";
+  const icon = size === "sm" ? "size-4" : "size-[18px]";
+  return (
+    <div className="flex flex-wrap gap-2.5">
+      {SOCIALS.map(({ name, href, Icon }) => (
+        <a
+          key={name}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={name}
+          title={name}
+          className={`group relative ${dim} grid place-items-center rounded-full bg-white/5 border border-white/12 text-white/80 hover:text-white hover:border-ember/60 hover:bg-ember/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_24px_-4px_var(--ember)]`}
+        >
+          <Icon className={icon} />
+        </a>
+      ))}
+    </div>
+  );
+}
+
+function UdyamBadge() {
+  return (
+    <a
+      href={UDYAM_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-br from-emerald-500/10 to-ember/10 border border-emerald-400/25 hover:border-emerald-300/60 px-4 py-3 transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-12px_rgba(16,185,129,0.4)]"
+    >
+      <span className="size-10 rounded-xl bg-emerald-500/20 text-emerald-300 grid place-items-center shrink-0">
+        <ShieldCheck className="size-5" />
+      </span>
+      <span className="min-w-0">
+        <span className="block text-[10px] uppercase tracking-widest text-emerald-300/80">Government Registered</span>
+        <span className="block text-sm font-semibold text-white">✅ Udyam Registered MSME</span>
+      </span>
+      <ArrowUpRight className="size-4 text-white/60 group-hover:text-white ml-1" />
+    </a>
+  );
+}
+
+function FindUs() {
+  return (
+    <section id="find-us" className="py-20 sm:py-28">
+      <div className="container-x">
+        <Reveal>
+          <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 items-stretch">
+            <div className="rounded-3xl glass p-8 sm:p-10 flex flex-col">
+              <span className="chip w-fit"><MapPin className="size-3.5" /> Visit our office</span>
+              <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold leading-tight">
+                Find <span className="text-ember">us</span> on the map
+              </h2>
+              <p className="mt-4 text-white/70 max-w-md leading-relaxed">
+                Drop by the nest — coffee's on us. Or ping ahead so we can pull up the moodboards.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="btn-ember hover:btn-ember-hover">
+                  <MapPin className="size-4" /> Open in Google Maps
+                </a>
+                <a href="https://wa.me/message/Z74MFBZ4HVQGG1" target="_blank" rel="noopener noreferrer" className="btn-ghost hover:btn-ghost-hover !text-white !border-white/20">
+                  <MessageCircle className="size-4" /> WhatsApp us
+                </a>
+              </div>
+              <div className="mt-auto pt-8">
+                <UdyamBadge />
+              </div>
+            </div>
+            <a
+              href={MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative rounded-3xl overflow-hidden border border-white/10 min-h-[340px] bg-[radial-gradient(circle_at_30%_30%,rgba(56,128,255,0.25),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(90,160,255,0.18),transparent_55%),#0A0F1F]"
+            >
+              <div className="absolute inset-0 opacity-40 bg-[linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:40px_40px]" />
+              <div className="absolute inset-0 grid place-items-center">
+                <div className="text-center px-6">
+                  <div className="mx-auto size-16 rounded-2xl bg-ember/20 border border-ember/40 grid place-items-center backdrop-blur">
+                    <MapPin className="size-8 text-ember" />
+                  </div>
+                  <div className="mt-4 font-display text-2xl font-bold">Owlnest Media HQ</div>
+                  <div className="mt-1 text-sm text-white/60">Tap to open in Google Maps</div>
+                  <div className="mt-5 inline-flex items-center gap-2 text-ember group-hover:translate-x-1 transition-transform">
+                    View directions <ArrowUpRight className="size-4" />
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
 import owlLogo from "@/assets/owlnest-logo.png.asset.json";
 import computechLogo from "@/assets/computech-logo.png.asset.json";
 import heroReel from "@/assets/hero-reel.mp4.asset.json";
@@ -877,6 +985,11 @@ function CTA() {
                   <ContactLine icon={Phone} label="Phone" value="+91 89836 26846" href="tel:+918983626846" />
                   <ContactLine icon={Globe} label="Website" value="www.owlnestmedia.com" href="#" />
                 </div>
+
+                <div className="mt-8">
+                  <div className="text-[11px] uppercase tracking-widest text-white/50 mb-3">Follow the nest</div>
+                  <SocialLinks />
+                </div>
               </div>
 
               {/* Right: contact form */}
@@ -1029,7 +1142,7 @@ function Footer() {
   return (
     <footer className="pt-16 pb-10 border-t border-border">
       <div className="container-x">
-        <div className="grid lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
+        <div className="grid lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] gap-10">
           <div>
             <div className="flex items-center gap-2.5">
               <OwlMark />
@@ -1039,24 +1152,34 @@ function Footer() {
               Brand Ko Do Digital Pankh — Helping brands fly higher through creativity, strategy, and technology.
             </p>
             <p className="mt-4 font-serif italic text-ember">Create • Inspire • Grow</p>
+            <div className="mt-6">
+              <SocialLinks size="sm" />
+            </div>
           </div>
           <FooterCol title="Studio" links={["Work","Services","Process","About"]} />
           <FooterCol title="Services" links={["Video Editing","Social Media","SEO & AI","Performance Ads","Marketplaces"]} />
           <div>
             <div className="font-display font-bold text-sm uppercase tracking-widest text-muted-foreground">Reach us</div>
             <div className="mt-4 space-y-3 text-sm">
-              <a href="https://instagram.com" className="flex items-center gap-2 hover:text-ember"><Instagram className="size-4" /> Instagram</a>
-              <a href="https://wa.me/918983626846" className="flex items-center gap-2 hover:text-ember"><MessageCircle className="size-4" /> WhatsApp</a>
-              <a href="#contact" className="flex items-center gap-2 hover:text-ember"><Mail className="size-4" /> Send a message</a>
+              <a href="https://wa.me/message/Z74MFBZ4HVQGG1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-ember transition-colors"><MessageCircle className="size-4" /> WhatsApp us</a>
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-ember transition-colors"><MapPin className="size-4" /> Find us on Maps</a>
+              <a href="#contact" className="flex items-center gap-2 hover:text-ember transition-colors"><Mail className="size-4" /> Send a message</a>
+            </div>
+            <div className="mt-6">
+              <UdyamBadge />
             </div>
           </div>
         </div>
 
         <div className="mt-14 hairline" />
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
-          <span>© 2026 Owlnest Media. All Rights Reserved.</span>
-          <span>Brand Ko Do Digital Pankh 🚀</span>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
+          <span>© 2026 Owlnest Media Pvt. Ltd. All Rights Reserved.</span>
+          <div className="flex flex-wrap items-center gap-5">
+            <Link to="/privacy" className="hover:text-ember transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-ember transition-colors">Terms & Conditions</Link>
+            <span className="hidden sm:inline">Brand Ko Do Digital Pankh 🚀</span>
+          </div>
         </div>
 
         {/* Big wordmark */}
@@ -1094,8 +1217,10 @@ function OwlnestHome() {
       <Services />
       <Why />
       <Testimonials />
+      <FindUs />
       <CTA />
       <Footer />
     </main>
   );
 }
+
