@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useRef, useState } from "react";
+import { submitContactForm } from "@/lib/contact.functions";
 import {
   ArrowUpRight, Play, Sparkles, Instagram, Mail, Phone,
   ArrowRight, Check, Star, ChevronRight, Globe, MessageCircle,
@@ -13,7 +15,6 @@ import brandFilm from "@/assets/brand-film.mp4.asset.json";
 import ariaFestival from "@/assets/aria-festival-campaign.mov.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
-const CONTACT_EMAIL = "info@owlnestmedia.com";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -240,7 +241,7 @@ function HeroMockup() {
 
 /* ---------- LOGO MARQUEE ---------- */
 function Marquee() {
-  const items = ["Amazon", "Flipkart", "Meesho", "Myntra", "Shopify", "Meta", "Google", "YouTube", "LinkedIn", "TikTok", "HubSpot", "Zoho"];
+  const items = ["Amazon", "Flipkart", "Meesho", "Hostinger", "Shopify", "Meta", "Google", "YouTube", "LinkedIn", "Blogspot", "Calendly", "Zoho"];
   return (
     <section className="py-10 border-y border-border/60 bg-surface-2/50">
       <div className="container-x">
@@ -582,7 +583,7 @@ const serviceGroups = [
     title: "Digital Marketing & Growth",
     items: [
       ["SEO & AI Search", "Visibility on Google + ChatGPT / Gemini through technical SEO, content & authority."],
-      ["Performance Marketing", "High-converting campaigns across Google, Meta, YouTube, LinkedIn, TikTok."],
+      ["Performance Marketing", "High-converting campaigns across Google, Meta, YouTube, LinkedIn, Blogspot."],
       ["Social Media Management", "Calendars, design, captions, engagement, profile growth."],
       ["Email & SMS Marketing", "Automated funnels, newsletters, promos, retention systems."],
       ["Influencer & Affiliate", "Creator partnerships and affiliate campaigns that move sales."],
@@ -630,7 +631,7 @@ const serviceGroups = [
     items: [
       ["Analytics & Tracking", "GA4, Meta Pixel, advanced conversion tracking."],
       ["Performance Dashboards", "Live reporting for ROAS, CAC, leads, campaigns."],
-      ["CRM & Marketing Automation", "HubSpot, Zoho, Salesforce — automated journeys."],
+      ["CRM & Marketing Automation", "Calendly, Zoho, Salesforce — automated journeys."],
       ["Lead Generation Systems", "Funnels, landing pages, WhatsApp & email nurture."],
     ],
   },
@@ -702,7 +703,7 @@ function Services() {
 function Why() {
   const points = [
     "End-to-End Marketing Solutions",
-    "Marketplace Experts (Amazon, Flipkart, Meesho, Myntra)",
+    "Marketplace Experts (Amazon, Flipkart, Meesho, Hostinger)",
     "Performance-Driven Approach",
     "Premium Content & Creative Production",
     "Website Design & Development",
@@ -788,18 +789,47 @@ function Testimonials() {
 }
 
 /* ---------- CTA + CONTACT FORM ---------- */
-function CTA() {
-  const [form, setForm] = useState({ name: "", email: "", company: "", message: "" });
-  const [sent, setSent] = useState(false);
 
-  const onSubmit = (e: React.FormEvent) => {
+
+
+function CTA() {
+  const submit = useServerFn(submitContactForm);
+  const [form, setForm] = useState({ name: "", email: "", company: "", message: "", website: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+  const [mountedAt] = useState(() => Date.now());
+
+  const validate = () => {
+    if (!form.name.trim() || form.name.length > 100) return "Please enter your name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email) || form.email.length > 255) return "Please enter a valid email.";
+    if (form.message.trim().length < 5) return "Please tell us a bit more about your project.";
+    if (form.message.length > 2000) return "Message is too long.";
+    return null;
+  };
+
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`New project inquiry — ${form.name || "Owlnest website"}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\n\nMessage:\n${form.message}`
-    );
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-    setSent(true);
+    const err = validate();
+    if (err) { setStatus("error"); setErrorMsg(err); return; }
+    setStatus("loading"); setErrorMsg("");
+    try {
+      await submit({
+        data: {
+          name: form.name.trim(),
+          email: form.email.trim(),
+          company: form.company.trim(),
+          message: form.message.trim(),
+          website: form.website,
+          elapsedMs: Date.now() - mountedAt,
+        },
+      });
+      setStatus("success");
+      setForm({ name: "", email: "", company: "", message: "", website: "" });
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setErrorMsg("Something went wrong. Please try again in a moment.");
+    }
   };
 
   return (
@@ -845,79 +875,123 @@ function CTA() {
 
                 <div className="mt-10 grid sm:grid-cols-1 gap-3 text-sm max-w-md">
                   <ContactLine icon={Phone} label="Phone" value="+91 89836 26846" href="tel:+918983626846" />
-                  <ContactLine icon={Mail} label="Email" value={CONTACT_EMAIL} href={`mailto:${CONTACT_EMAIL}`} />
                   <ContactLine icon={Globe} label="Website" value="www.owlnestmedia.com" href="#" />
                 </div>
               </div>
 
               {/* Right: contact form */}
-              <form
-                onSubmit={onSubmit}
-                className="rounded-3xl bg-white/[0.04] backdrop-blur border border-white/10 p-6 sm:p-8 space-y-4"
-              >
-                <div>
-                  <div className="font-display font-bold text-xl">Start your project</div>
-                  <p className="text-sm text-white/60 mt-1">We reply within one business day.</p>
-                </div>
-
-                <Field label="Your name">
-                  <input
-                    required
-                    maxLength={100}
-                    value={form.name}
-                    onChange={e => setForm({ ...form, name: e.target.value })}
-                    placeholder="Jane Doe"
-                    className="input-dark"
-                  />
-                </Field>
-                <Field label="Email">
-                  <input
-                    required
-                    type="email"
-                    maxLength={255}
-                    value={form.email}
-                    onChange={e => setForm({ ...form, email: e.target.value })}
-                    placeholder="jane@brand.com"
-                    className="input-dark"
-                  />
-                </Field>
-                <Field label="Company (optional)">
-                  <input
-                    maxLength={120}
-                    value={form.company}
-                    onChange={e => setForm({ ...form, company: e.target.value })}
-                    placeholder="Brand or company"
-                    className="input-dark"
-                  />
-                </Field>
-                <Field label="What are you building?">
-                  <textarea
-                    required
-                    maxLength={1500}
-                    rows={4}
-                    value={form.message}
-                    onChange={e => setForm({ ...form, message: e.target.value })}
-                    placeholder="Tell us about your goals, timeline, and budget…"
-                    className="input-dark resize-none"
-                  />
-                </Field>
-
-                <button
-                  type="submit"
-                  className="btn-ember hover:btn-ember-hover w-full justify-center !py-3"
-                >
-                  <Send className="size-4" /> Send message
-                </button>
-
-                {sent && (
-                  <p className="text-xs text-emerald-300">
-                    Opening your email app… if nothing happens, write us directly at {CONTACT_EMAIL}.
+              {status === "success" ? (
+                <div className="rounded-3xl bg-white/[0.04] backdrop-blur border border-white/10 p-8 sm:p-10 text-center">
+                  <div className="mx-auto size-14 rounded-full bg-ember/20 text-ember grid place-items-center">
+                    <Check className="size-7" />
+                  </div>
+                  <h3 className="mt-5 font-display text-2xl font-bold">Thank you!</h3>
+                  <p className="mt-3 text-white/70 leading-relaxed">
+                    Your message has been sent successfully. We'll get back to you shortly.
                   </p>
-                )}
-                <p className="text-[11px] text-white/40">
-                  By submitting, you'll send an email to {CONTACT_EMAIL} from your default mail app.
-                </p>
-              </form>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="mt-6 btn-ghost hover:btn-ghost-hover !text-white !border-white/20"
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form
+                  onSubmit={onSubmit}
+                  noValidate
+                  className="rounded-3xl bg-white/[0.04] backdrop-blur border border-white/10 p-6 sm:p-8 space-y-4"
+                >
+                  <div>
+                    <div className="font-display font-bold text-xl">Start your project</div>
+                    <p className="text-sm text-white/60 mt-1">We reply within one business day.</p>
+                  </div>
+
+                  {/* Honeypot — hidden from users, catches bots */}
+                  <div className="hidden" aria-hidden="true">
+                    <label>
+                      Website
+                      <input
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={form.website}
+                        onChange={e => setForm({ ...form, website: e.target.value })}
+                      />
+                    </label>
+                  </div>
+
+                  <Field label="Your name">
+                    <input
+                      required
+                      maxLength={100}
+                      value={form.name}
+                      onChange={e => setForm({ ...form, name: e.target.value })}
+                      placeholder="Jane Doe"
+                      className="input-dark"
+                      disabled={status === "loading"}
+                    />
+                  </Field>
+                  <Field label="Email">
+                    <input
+                      required
+                      type="email"
+                      maxLength={255}
+                      value={form.email}
+                      onChange={e => setForm({ ...form, email: e.target.value })}
+                      placeholder="jane@brand.com"
+                      className="input-dark"
+                      disabled={status === "loading"}
+                    />
+                  </Field>
+                  <Field label="Company (optional)">
+                    <input
+                      maxLength={120}
+                      value={form.company}
+                      onChange={e => setForm({ ...form, company: e.target.value })}
+                      placeholder="Brand or company"
+                      className="input-dark"
+                      disabled={status === "loading"}
+                    />
+                  </Field>
+                  <Field label="What are you building?">
+                    <textarea
+                      required
+                      maxLength={2000}
+                      rows={4}
+                      value={form.message}
+                      onChange={e => setForm({ ...form, message: e.target.value })}
+                      placeholder="Tell us about your goals, timeline, and budget…"
+                      className="input-dark resize-none"
+                      disabled={status === "loading"}
+                    />
+                  </Field>
+
+                  <button
+                    type="submit"
+                    disabled={status === "loading"}
+                    className="btn-ember hover:btn-ember-hover w-full justify-center !py-3 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === "loading" ? (
+                      <>
+                        <span className="inline-block size-4 rounded-full border-2 border-white/40 border-t-white animate-spin" />
+                        Sending…
+                      </>
+                    ) : (
+                      <>
+                        <Send className="size-4" /> Send message
+                      </>
+                    )}
+                  </button>
+
+                  {status === "error" && (
+                    <p className="text-xs text-red-300">{errorMsg}</p>
+                  )}
+                  <p className="text-[11px] text-white/40">
+                    Your details are sent securely to our team. We never share them.
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </Reveal>
@@ -925,6 +999,7 @@ function CTA() {
     </section>
   );
 }
+
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -972,7 +1047,7 @@ function Footer() {
             <div className="mt-4 space-y-3 text-sm">
               <a href="https://instagram.com" className="flex items-center gap-2 hover:text-ember"><Instagram className="size-4" /> Instagram</a>
               <a href="https://wa.me/918983626846" className="flex items-center gap-2 hover:text-ember"><MessageCircle className="size-4" /> WhatsApp</a>
-              <a href="mailto:info@owlnestmedia.com" className="flex items-center gap-2 hover:text-ember"><Mail className="size-4" /> info@owlnestmedia.com</a>
+              <a href="#contact" className="flex items-center gap-2 hover:text-ember"><Mail className="size-4" /> Send a message</a>
             </div>
           </div>
         </div>
