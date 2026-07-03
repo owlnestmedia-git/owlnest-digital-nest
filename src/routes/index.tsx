@@ -630,7 +630,7 @@ const serviceGroups = [
     items: [
       ["Analytics & Tracking", "GA4, Meta Pixel, advanced conversion tracking."],
       ["Performance Dashboards", "Live reporting for ROAS, CAC, leads, campaigns."],
-      ["CRM & Marketing Automation", "HubSpot, Zoho, Salesforce — automated journeys."],
+      ["CRM & Marketing Automation", "Calendly, Zoho, Salesforce — automated journeys."],
       ["Lead Generation Systems", "Funnels, landing pages, WhatsApp & email nurture."],
     ],
   },
