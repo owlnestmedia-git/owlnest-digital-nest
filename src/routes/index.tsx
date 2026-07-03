@@ -13,7 +13,6 @@ import brandFilm from "@/assets/brand-film.mp4.asset.json";
 import ariaFestival from "@/assets/aria-festival-campaign.mov.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
-const CONTACT_EMAIL = "info@owlnestmedia.com";
 
 export const Route = createFileRoute("/")({
   head: () => ({
