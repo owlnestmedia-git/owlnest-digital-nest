@@ -1046,7 +1046,7 @@ function Footer() {
             <div className="mt-4 space-y-3 text-sm">
               <a href="https://instagram.com" className="flex items-center gap-2 hover:text-ember"><Instagram className="size-4" /> Instagram</a>
               <a href="https://wa.me/918983626846" className="flex items-center gap-2 hover:text-ember"><MessageCircle className="size-4" /> WhatsApp</a>
-              <a href="mailto:info@owlnestmedia.com" className="flex items-center gap-2 hover:text-ember"><Mail className="size-4" /> info@owlnestmedia.com</a>
+              <a href="#contact" className="flex items-center gap-2 hover:text-ember"><Mail className="size-4" /> Send a message</a>
             </div>
           </div>
         </div>
