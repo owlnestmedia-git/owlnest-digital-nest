@@ -582,7 +582,7 @@ const serviceGroups = [
     title: "Digital Marketing & Growth",
     items: [
       ["SEO & AI Search", "Visibility on Google + ChatGPT / Gemini through technical SEO, content & authority."],
-      ["Performance Marketing", "High-converting campaigns across Google, Meta, YouTube, LinkedIn, TikTok."],
+      ["Performance Marketing", "High-converting campaigns across Google, Meta, YouTube, LinkedIn, Blogspot."],
       ["Social Media Management", "Calendars, design, captions, engagement, profile growth."],
       ["Email & SMS Marketing", "Automated funnels, newsletters, promos, retention systems."],
       ["Influencer & Affiliate", "Creator partnerships and affiliate campaigns that move sales."],
