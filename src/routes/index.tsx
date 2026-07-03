@@ -1142,7 +1142,7 @@ function Footer() {
   return (
     <footer className="pt-16 pb-10 border-t border-border">
       <div className="container-x">
-        <div className="grid lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-10">
+        <div className="grid lg:grid-cols-[1.6fr_1fr_1fr_1.2fr] gap-10">
           <div>
             <div className="flex items-center gap-2.5">
               <OwlMark />
@@ -1152,24 +1152,34 @@ function Footer() {
               Brand Ko Do Digital Pankh — Helping brands fly higher through creativity, strategy, and technology.
             </p>
             <p className="mt-4 font-serif italic text-ember">Create • Inspire • Grow</p>
+            <div className="mt-6">
+              <SocialLinks size="sm" />
+            </div>
           </div>
           <FooterCol title="Studio" links={["Work","Services","Process","About"]} />
           <FooterCol title="Services" links={["Video Editing","Social Media","SEO & AI","Performance Ads","Marketplaces"]} />
           <div>
             <div className="font-display font-bold text-sm uppercase tracking-widest text-muted-foreground">Reach us</div>
             <div className="mt-4 space-y-3 text-sm">
-              <a href="https://instagram.com" className="flex items-center gap-2 hover:text-ember"><Instagram className="size-4" /> Instagram</a>
-              <a href="https://wa.me/918983626846" className="flex items-center gap-2 hover:text-ember"><MessageCircle className="size-4" /> WhatsApp</a>
-              <a href="#contact" className="flex items-center gap-2 hover:text-ember"><Mail className="size-4" /> Send a message</a>
+              <a href="https://wa.me/message/Z74MFBZ4HVQGG1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-ember transition-colors"><MessageCircle className="size-4" /> WhatsApp us</a>
+              <a href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-ember transition-colors"><MapPin className="size-4" /> Find us on Maps</a>
+              <a href="#contact" className="flex items-center gap-2 hover:text-ember transition-colors"><Mail className="size-4" /> Send a message</a>
+            </div>
+            <div className="mt-6">
+              <UdyamBadge />
             </div>
           </div>
         </div>
 
         <div className="mt-14 hairline" />
 
-        <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
-          <span>© 2026 Owlnest Media. All Rights Reserved.</span>
-          <span>Brand Ko Do Digital Pankh 🚀</span>
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
+          <span>© 2026 Owlnest Media Pvt. Ltd. All Rights Reserved.</span>
+          <div className="flex flex-wrap items-center gap-5">
+            <Link to="/privacy" className="hover:text-ember transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="hover:text-ember transition-colors">Terms & Conditions</Link>
+            <span className="hidden sm:inline">Brand Ko Do Digital Pankh 🚀</span>
+          </div>
         </div>
 
         {/* Big wordmark */}
@@ -1207,8 +1217,10 @@ function OwlnestHome() {
       <Services />
       <Why />
       <Testimonials />
+      <FindUs />
       <CTA />
       <Footer />
     </main>
   );
 }
+
