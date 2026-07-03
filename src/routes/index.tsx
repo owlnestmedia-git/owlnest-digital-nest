@@ -240,7 +240,7 @@ function HeroMockup() {
 
 /* ---------- LOGO MARQUEE ---------- */
 function Marquee() {
-  const items = ["Amazon", "Flipkart", "Meesho", "Myntra", "Shopify", "Meta", "Google", "YouTube", "LinkedIn", "TikTok", "HubSpot", "Zoho"];
+  const items = ["Amazon", "Flipkart", "Meesho", "Hostinger", "Shopify", "Meta", "Google", "YouTube", "LinkedIn", "Blogspot", "Calendly", "Zoho"];
   return (
     <section className="py-10 border-y border-border/60 bg-surface-2/50">
       <div className="container-x">
