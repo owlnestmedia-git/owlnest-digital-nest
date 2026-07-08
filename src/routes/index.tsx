@@ -127,6 +127,9 @@ import reelGamingMannia from "@/assets/reel-gaming-mannia.mp4.asset.json";
 import reelCulturalThrifts from "@/assets/reel-cultural-thrifts.mp4.asset.json";
 import reelBirthdayParties from "@/assets/reel-birthday-parties.mp4.asset.json";
 import reelJuiceShoot from "@/assets/reel-juice-shoot.mp4.asset.json";
+import docOwlnestMedia from "@/assets/doc-owlnest-media.mp4.asset.json";
+import docVexo from "@/assets/doc-vexo.mp4.asset.json";
+import docSpylt from "@/assets/doc-spylt.mp4.asset.json";
 import commercialAnandaBhavan from "@/assets/commercial-ananda-bhavan.mp4.asset.json";
 import commercialParachute from "@/assets/commercial-parachute.mp4.asset.json";
 import commercialLunore from "@/assets/commercial-lunore.mp4.asset.json";
@@ -430,9 +433,9 @@ const reels: Card[] = [
 ];
 
 const documentaries: Card[] = [
-  { title: "The Loom — A weaver's story", meta: "Doc · 6:42" },
-  { title: "Inside Bharat Coffee", meta: "Doc · 9:10" },
-  { title: "Crafting Steel", meta: "Doc · 5:28" },
+  { title: "Owlnest Media — Creative Agency", meta: "Doc · Brand Story", video: docOwlnestMedia.url },
+  { title: "VEXO — Workout", meta: "Doc · Fitness", video: docVexo.url },
+  { title: "SPYLT — Protein + Caffeine", meta: "Doc · Product", video: docSpylt.url },
 ];
 
 const commercials: Card[] = [
@@ -624,13 +627,26 @@ function DocCard({ card, index }: { card: Card; index: number }) {
   return (
     <div className="group rounded-2xl overflow-hidden border border-border bg-card card-lift hover:card-lift-hover">
       <div className="relative aspect-[16/10] overflow-hidden" style={{ background: reelGradients[(index + 2) % reelGradients.length] }}>
+        {card.video && (
+          <video
+            src={card.video}
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         <span className="absolute top-3 left-3 chip !bg-white/85 !text-ink !border-white">Documentary</span>
-        <div className="absolute inset-0 grid place-items-center opacity-90 group-hover:scale-105 transition">
-          <div className="size-14 rounded-full bg-white/90 grid place-items-center">
-            <Play className="size-5 fill-ink text-ink ml-0.5" />
+        {!card.video && (
+          <div className="absolute inset-0 grid place-items-center opacity-90 group-hover:scale-105 transition">
+            <div className="size-14 rounded-full bg-white/90 grid place-items-center">
+              <Play className="size-5 fill-ink text-ink ml-0.5" />
+            </div>
           </div>
-        </div>
+        )}
         <div className="absolute bottom-3 left-3 right-3 text-white">
           <div className="font-display text-lg font-semibold">{card.title}</div>
           <div className="text-[11px] opacity-80 mt-0.5">{card.meta}</div>
