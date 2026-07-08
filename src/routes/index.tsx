@@ -127,6 +127,10 @@ import reelGamingMannia from "@/assets/reel-gaming-mannia.mp4.asset.json";
 import reelCulturalThrifts from "@/assets/reel-cultural-thrifts.mp4.asset.json";
 import reelBirthdayParties from "@/assets/reel-birthday-parties.mp4.asset.json";
 import reelJuiceShoot from "@/assets/reel-juice-shoot.mp4.asset.json";
+import commercialAnandaBhavan from "@/assets/commercial-ananda-bhavan.mp4.asset.json";
+import commercialParachute from "@/assets/commercial-parachute.mp4.asset.json";
+import commercialLunore from "@/assets/commercial-lunore.mp4.asset.json";
+import commercialFonezone from "@/assets/commercial-fonezone.mp4.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
 
@@ -432,10 +436,10 @@ const documentaries: Card[] = [
 ];
 
 const commercials: Card[] = [
-  { title: "Volt EV — Made for tomorrow", meta: "Spot · 0:60" },
-  { title: "Ora Watches — Tides", meta: "Spot · 0:30" },
-  { title: "Halcyon Hotels — Stay slow", meta: "Spot · 0:45" },
-  { title: "Forma Furniture — Lines", meta: "Spot · 0:30" },
+  { title: "Ananda Bhavan — Sweets & Snacks", meta: "Spot · Food", video: commercialAnandaBhavan.url },
+  { title: "PARACHUTE — India's No. 1 Oil", meta: "Spot · FMCG", video: commercialParachute.url },
+  { title: "Lunore — Aroma of Wild", meta: "Spot · Fragrance", video: commercialLunore.url },
+  { title: "FONEZONE — Apple iPhone", meta: "Spot · Retail", video: commercialFonezone.url },
 ];
 
 const campaigns = [
@@ -639,15 +643,28 @@ function DocCard({ card, index }: { card: Card; index: number }) {
 function CommercialCard({ card, index }: { card: Card; index: number }) {
   return (
     <div className="group relative rounded-2xl overflow-hidden border border-border aspect-[4/5] card-lift hover:card-lift-hover" style={{ background: reelGradients[(index + 1) % reelGradients.length] }}>
+      {card.video && (
+        <video
+          src={card.video}
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="size-14 rounded-full glass grid place-items-center group-hover:scale-110 transition">
-          <Play className="size-5 fill-white text-white ml-0.5" />
+      {!card.video && (
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="size-14 rounded-full glass grid place-items-center group-hover:scale-110 transition">
+            <Play className="size-5 fill-white text-white ml-0.5" />
+          </div>
         </div>
-      </div>
+      )}
       <div className="absolute inset-x-4 bottom-4 text-white">
         <div className="text-xs uppercase tracking-widest opacity-70">{card.meta}</div>
-        <div className="font-display text-base font-semibold leading-tight mt-1">{card.title}</div>
+        <div className="font-display text-base font-semibold leading-tight mt-1 drop-shadow">{card.title}</div>
       </div>
     </div>
   );
