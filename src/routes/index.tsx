@@ -121,6 +121,12 @@ import computechLogo from "@/assets/computech-logo.png.asset.json";
 import heroReel from "@/assets/hero-reel.mp4.asset.json";
 import brandFilm from "@/assets/brand-film.mp4.asset.json";
 import ariaFestival from "@/assets/aria-festival-campaign.mov.asset.json";
+import reelUniqove from "@/assets/reel-uniqove.mp4.asset.json";
+import reelDivyabhoomi from "@/assets/reel-divyabhoomi.mp4.asset.json";
+import reelGamingMannia from "@/assets/reel-gaming-mannia.mp4.asset.json";
+import reelCulturalThrifts from "@/assets/reel-cultural-thrifts.mp4.asset.json";
+import reelBirthdayParties from "@/assets/reel-birthday-parties.mp4.asset.json";
+import reelJuiceShoot from "@/assets/reel-juice-shoot.mp4.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
 
@@ -409,14 +415,14 @@ const featured = {
   tag: "Featured Case",
 };
 
-type Card = { title: string; meta: string; tag?: string; tone?: string; views?: string };
+type Card = { title: string; meta: string; tag?: string; tone?: string; views?: string; video?: string };
 const reels: Card[] = [
-  { title: "Nimbus Coffee — Morning Drop", meta: "Reel · 0:28", views: "1.2M" },
-  { title: "Forge Athletics — Drop 03", meta: "Reel · 0:32", views: "840K" },
-  { title: "Mira Studio — Behind The Lens", meta: "Reel · 0:21", views: "612K" },
-  { title: "Nova Labs — App Launch", meta: "Reel · 0:36", views: "2.1M" },
-  { title: "Bloom & Brass — Spring", meta: "Reel · 0:25", views: "320K" },
-  { title: "Halcyon — Founders Story", meta: "Reel · 0:48", views: "1.8M" },
+  { title: "UNIQOVE", meta: "Reel · Brand", video: reelUniqove.url },
+  { title: "Divyabhoomi Opulence — Rameshwaram Group", meta: "Reel · Luxury Living", video: reelDivyabhoomi.url },
+  { title: "Gaming Mannia", meta: "Reel · Gaming", video: reelGamingMannia.url },
+  { title: "Cultural Thrifts", meta: "Reel · Lifestyle", video: reelCulturalThrifts.url },
+  { title: "Birthday & Parties — The Event Agency", meta: "Reel · Events", video: reelBirthdayParties.url },
+  { title: "Juic'e Shoot — Product Shoot", meta: "Reel · Product", video: reelJuiceShoot.url },
 ];
 
 const documentaries: Card[] = [
@@ -571,20 +577,35 @@ function ReelCard({ card, index }: { card: Card; index: number }) {
   return (
     <div className="group shrink-0 w-[180px] sm:w-[220px]">
       <div className="relative aspect-[9/14] rounded-2xl overflow-hidden border border-border card-lift hover:card-lift-hover" style={{ background: reelGradients[index % reelGradients.length] }}>
-        <div className="absolute inset-0 mix-blend-overlay opacity-30" style={{
-          backgroundImage: "radial-gradient(circle at 30% 30%, rgba(255,255,255,.4), transparent 50%)"
-        }} />
+        {card.video ? (
+          <video
+            src={card.video}
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        ) : (
+          <div className="absolute inset-0 mix-blend-overlay opacity-30" style={{
+            backgroundImage: "radial-gradient(circle at 30% 30%, rgba(255,255,255,.4), transparent 50%)"
+          }} />
+        )}
+        {card.video && <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30 pointer-events-none" />}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-white/90 text-[11px]">
           <span>{card.meta}</span>
           {card.views && <span className="px-2 py-0.5 rounded-full bg-black/30 backdrop-blur">{card.views}</span>}
         </div>
-        <div className="absolute inset-0 grid place-items-center opacity-90 group-hover:scale-110 transition">
-          <div className="size-12 rounded-full bg-white/90 grid place-items-center">
-            <Play className="size-4 fill-ink text-ink ml-0.5" />
+        {!card.video && (
+          <div className="absolute inset-0 grid place-items-center opacity-90 group-hover:scale-110 transition">
+            <div className="size-12 rounded-full bg-white/90 grid place-items-center">
+              <Play className="size-4 fill-ink text-ink ml-0.5" />
+            </div>
           </div>
-        </div>
+        )}
         <div className="absolute inset-x-3 bottom-3 text-white">
-          <div className="text-xs font-medium leading-snug">{card.title}</div>
+          <div className="text-xs font-medium leading-snug drop-shadow">{card.title}</div>
         </div>
         {/* hover bar */}
         <div className="absolute inset-x-3 bottom-1 h-0.5 bg-white/20 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition">
