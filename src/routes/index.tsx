@@ -643,15 +643,28 @@ function DocCard({ card, index }: { card: Card; index: number }) {
 function CommercialCard({ card, index }: { card: Card; index: number }) {
   return (
     <div className="group relative rounded-2xl overflow-hidden border border-border aspect-[4/5] card-lift hover:card-lift-hover" style={{ background: reelGradients[(index + 1) % reelGradients.length] }}>
+      {card.video && (
+        <video
+          src={card.video}
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-      <div className="absolute inset-0 grid place-items-center">
-        <div className="size-14 rounded-full glass grid place-items-center group-hover:scale-110 transition">
-          <Play className="size-5 fill-white text-white ml-0.5" />
+      {!card.video && (
+        <div className="absolute inset-0 grid place-items-center">
+          <div className="size-14 rounded-full glass grid place-items-center group-hover:scale-110 transition">
+            <Play className="size-5 fill-white text-white ml-0.5" />
+          </div>
         </div>
-      </div>
+      )}
       <div className="absolute inset-x-4 bottom-4 text-white">
         <div className="text-xs uppercase tracking-widest opacity-70">{card.meta}</div>
-        <div className="font-display text-base font-semibold leading-tight mt-1">{card.title}</div>
+        <div className="font-display text-base font-semibold leading-tight mt-1 drop-shadow">{card.title}</div>
       </div>
     </div>
   );
