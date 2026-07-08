@@ -415,14 +415,14 @@ const featured = {
   tag: "Featured Case",
 };
 
-type Card = { title: string; meta: string; tag?: string; tone?: string; views?: string };
+type Card = { title: string; meta: string; tag?: string; tone?: string; views?: string; video?: string };
 const reels: Card[] = [
-  { title: "Nimbus Coffee — Morning Drop", meta: "Reel · 0:28", views: "1.2M" },
-  { title: "Forge Athletics — Drop 03", meta: "Reel · 0:32", views: "840K" },
-  { title: "Mira Studio — Behind The Lens", meta: "Reel · 0:21", views: "612K" },
-  { title: "Nova Labs — App Launch", meta: "Reel · 0:36", views: "2.1M" },
-  { title: "Bloom & Brass — Spring", meta: "Reel · 0:25", views: "320K" },
-  { title: "Halcyon — Founders Story", meta: "Reel · 0:48", views: "1.8M" },
+  { title: "UNIQOVE", meta: "Reel · Brand", video: reelUniqove.url },
+  { title: "Divyabhoomi Opulence — Rameshwaram Group", meta: "Reel · Luxury Living", video: reelDivyabhoomi.url },
+  { title: "Gaming Mannia", meta: "Reel · Gaming", video: reelGamingMannia.url },
+  { title: "Cultural Thrifts", meta: "Reel · Lifestyle", video: reelCulturalThrifts.url },
+  { title: "Birthday & Parties — The Event Agency", meta: "Reel · Events", video: reelBirthdayParties.url },
+  { title: "Juic'e Shoot — Product Shoot", meta: "Reel · Product", video: reelJuiceShoot.url },
 ];
 
 const documentaries: Card[] = [
