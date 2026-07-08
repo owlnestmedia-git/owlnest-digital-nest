@@ -577,20 +577,35 @@ function ReelCard({ card, index }: { card: Card; index: number }) {
   return (
     <div className="group shrink-0 w-[180px] sm:w-[220px]">
       <div className="relative aspect-[9/14] rounded-2xl overflow-hidden border border-border card-lift hover:card-lift-hover" style={{ background: reelGradients[index % reelGradients.length] }}>
-        <div className="absolute inset-0 mix-blend-overlay opacity-30" style={{
-          backgroundImage: "radial-gradient(circle at 30% 30%, rgba(255,255,255,.4), transparent 50%)"
-        }} />
+        {card.video ? (
+          <video
+            src={card.video}
+            className="absolute inset-0 h-full w-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          />
+        ) : (
+          <div className="absolute inset-0 mix-blend-overlay opacity-30" style={{
+            backgroundImage: "radial-gradient(circle at 30% 30%, rgba(255,255,255,.4), transparent 50%)"
+          }} />
+        )}
+        {card.video && <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/30 pointer-events-none" />}
         <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-white/90 text-[11px]">
           <span>{card.meta}</span>
           {card.views && <span className="px-2 py-0.5 rounded-full bg-black/30 backdrop-blur">{card.views}</span>}
         </div>
-        <div className="absolute inset-0 grid place-items-center opacity-90 group-hover:scale-110 transition">
-          <div className="size-12 rounded-full bg-white/90 grid place-items-center">
-            <Play className="size-4 fill-ink text-ink ml-0.5" />
+        {!card.video && (
+          <div className="absolute inset-0 grid place-items-center opacity-90 group-hover:scale-110 transition">
+            <div className="size-12 rounded-full bg-white/90 grid place-items-center">
+              <Play className="size-4 fill-ink text-ink ml-0.5" />
+            </div>
           </div>
-        </div>
+        )}
         <div className="absolute inset-x-3 bottom-3 text-white">
-          <div className="text-xs font-medium leading-snug">{card.title}</div>
+          <div className="text-xs font-medium leading-snug drop-shadow">{card.title}</div>
         </div>
         {/* hover bar */}
         <div className="absolute inset-x-3 bottom-1 h-0.5 bg-white/20 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition">
