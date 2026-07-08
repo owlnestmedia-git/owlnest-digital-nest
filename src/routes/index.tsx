@@ -433,9 +433,9 @@ const reels: Card[] = [
 ];
 
 const documentaries: Card[] = [
-  { title: "The Loom — A weaver's story", meta: "Doc · 6:42" },
-  { title: "Inside Bharat Coffee", meta: "Doc · 9:10" },
-  { title: "Crafting Steel", meta: "Doc · 5:28" },
+  { title: "Owlnest Media — Creative Agency", meta: "Doc · Brand Story", video: docOwlnestMedia.url },
+  { title: "VEXO — Workout", meta: "Doc · Fitness", video: docVexo.url },
+  { title: "SPYLT — Protein + Caffeine", meta: "Doc · Product", video: docSpylt.url },
 ];
 
 const commercials: Card[] = [
