@@ -432,10 +432,10 @@ const documentaries: Card[] = [
 ];
 
 const commercials: Card[] = [
-  { title: "Volt EV — Made for tomorrow", meta: "Spot · 0:60" },
-  { title: "Ora Watches — Tides", meta: "Spot · 0:30" },
-  { title: "Halcyon Hotels — Stay slow", meta: "Spot · 0:45" },
-  { title: "Forma Furniture — Lines", meta: "Spot · 0:30" },
+  { title: "Ananda Bhavan — Sweets & Snacks", meta: "Spot · Food", video: commercialAnandaBhavan.url },
+  { title: "PARACHUTE — India's No. 1 Oil", meta: "Spot · FMCG", video: commercialParachute.url },
+  { title: "Lunore — Aroma of Wild", meta: "Spot · Fragrance", video: commercialLunore.url },
+  { title: "FONEZONE — Apple iPhone", meta: "Spot · Retail", video: commercialFonezone.url },
 ];
 
 const campaigns = [
