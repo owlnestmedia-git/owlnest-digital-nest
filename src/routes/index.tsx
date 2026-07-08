@@ -121,6 +121,12 @@ import computechLogo from "@/assets/computech-logo.png.asset.json";
 import heroReel from "@/assets/hero-reel.mp4.asset.json";
 import brandFilm from "@/assets/brand-film.mp4.asset.json";
 import ariaFestival from "@/assets/aria-festival-campaign.mov.asset.json";
+import reelUniqove from "@/assets/reel-uniqove.mp4.asset.json";
+import reelDivyabhoomi from "@/assets/reel-divyabhoomi.mp4.asset.json";
+import reelGamingMannia from "@/assets/reel-gaming-mannia.mp4.asset.json";
+import reelCulturalThrifts from "@/assets/reel-cultural-thrifts.mp4.asset.json";
+import reelBirthdayParties from "@/assets/reel-birthday-parties.mp4.asset.json";
+import reelJuiceShoot from "@/assets/reel-juice-shoot.mp4.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
 
