@@ -127,6 +127,10 @@ import reelGamingMannia from "@/assets/reel-gaming-mannia.mp4.asset.json";
 import reelCulturalThrifts from "@/assets/reel-cultural-thrifts.mp4.asset.json";
 import reelBirthdayParties from "@/assets/reel-birthday-parties.mp4.asset.json";
 import reelJuiceShoot from "@/assets/reel-juice-shoot.mp4.asset.json";
+import commercialAnandaBhavan from "@/assets/commercial-ananda-bhavan.mp4.asset.json";
+import commercialParachute from "@/assets/commercial-parachute.mp4.asset.json";
+import commercialLunore from "@/assets/commercial-lunore.mp4.asset.json";
+import commercialFonezone from "@/assets/commercial-fonezone.mp4.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
 
