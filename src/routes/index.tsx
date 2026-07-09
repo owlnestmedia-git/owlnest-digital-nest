@@ -1237,11 +1237,17 @@ function Footer() {
           </div>
         </div>
 
-        {/* Big wordmark */}
-        <div className="mt-10 overflow-hidden">
-          <div className="font-display font-black tracking-tighter text-[18vw] leading-none text-shine select-none whitespace-nowrap">
-            OWLNEST MEDIA
-          </div>
+        {/* Footer video */}
+        <div className="mt-10 rounded-3xl overflow-hidden border border-white/10 bg-ink">
+          <video
+            src={owlFooterVideo.url}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="w-full h-auto max-h-[420px] object-cover"
+          />
         </div>
       </div>
     </footer>
