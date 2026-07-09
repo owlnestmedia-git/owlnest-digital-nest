@@ -134,6 +134,7 @@ import commercialAnandaBhavan from "@/assets/commercial-ananda-bhavan.mp4.asset.
 import commercialParachute from "@/assets/commercial-parachute.mp4.asset.json";
 import commercialLunore from "@/assets/commercial-lunore.mp4.asset.json";
 import commercialFonezone from "@/assets/commercial-fonezone.mp4.asset.json";
+import owlFooterVideo from "@/assets/owl-footer-video.mp4.asset.json";
 
 const CALENDLY_URL = "https://calendly.com/team-owlnestmedia/30min";
 
